@@ -1,0 +1,4 @@
+1. To install bundle <packaging> has to be set to 'bundle'
+2. Start Apache Felix Console (CMD or Web) (java -jar bin/felix.jar)
+3. Install bundle : install file:\C:\....
+4. Active or Deactivate bundle : start or stop command 

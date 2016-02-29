@@ -10,14 +10,17 @@
 	<groupId>com.pduleba.apache.felix</groupId>
 	<artifactId>tutorial1</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>bundle</packaging><!-- OSGi bundle build -->
 
 	<name>tutorial1</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<maven-bundle-plugin.version>3.0.1</maven-bundle-plugin.version>
+		<org.apache.felix.framework.version>4.2.1</org.apache.felix.framework.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 
 	<build>
@@ -29,9 +32,14 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Export-Package>com.pduleba.apache.felix.tutorial1</Export-Package>
-						<Private-Package>com.pduleba.apache.felix.*</Private-Package>
-						<Bundle-Activator>com.pduleba.apache.felix.tutorial1.FelixBundleActivator</Bundle-Activator>
+						<Bundle-SymbolicName>${pom.groupId}.${pom.artifactId}</Bundle-SymbolicName>
+						<Bundle-Name>Service listener example</Bundle-Name>
+						<Bundle-Description>A bundle that displays messages at startup and when service events occur</Bundle-Description>
+						<Bundle-Vendor>Apache Felix</Bundle-Vendor>
+						<Bundle-Version>1.0.0</Bundle-Version>
+						<Bundle-Activator>com.pduleba.apache.felix.tutorial.FelixBundleActivator</Bundle-Activator>
+						<Import-Package>org.osgi.framework</Import-Package>
+						<Private-Package>com.pduleba.apache.felix.tutorial</Private-Package>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -40,10 +48,15 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>${org.apache.felix.framework.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<version>${junit.version}</version>
 		</dependency>
 	</dependencies>
 </project>
